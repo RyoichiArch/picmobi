@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "219955384471",
+    "project_id": "pictmobi",
+    "storage_bucket": "pictmobi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219955384471:android:e5c5a75c9324bd05c3d9d2",
+        "android_client_info": {
+          "package_name": "com.mycompany.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "219955384471-ruqr687dja3asgssvtnbjo9t7t0nuou5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrQtxxI6wPe0F_57cwe7e0VWXYGaucO-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "219955384471-ruqr687dja3asgssvtnbjo9t7t0nuou5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "219955384471-uguvlan17750hn7pe7haa283chhto53u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.application"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
