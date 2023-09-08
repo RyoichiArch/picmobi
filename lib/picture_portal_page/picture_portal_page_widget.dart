@@ -11,6 +11,8 @@ import 'package:provider/provider.dart';
 import 'picture_portal_page_model.dart';
 export 'picture_portal_page_model.dart';
 
+
+
 class PicturePortalPageWidget extends StatefulWidget {
   const PicturePortalPageWidget({Key? key}) : super(key: key);
 

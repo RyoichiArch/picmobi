@@ -8,6 +8,9 @@ import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
+import 'dart:io';  // この行を追加
+import 'package:http/http.dart' as http;
 
 class PicturePortalPageModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
@@ -17,6 +20,10 @@ class PicturePortalPageModel extends FlutterFlowModel {
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
+
+  File? _image; // 追加
+  String? _label; // 追加
+  int _quantity = 0; // 追加
 
   /// Initialization and disposal methods.
 

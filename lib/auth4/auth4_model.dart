@@ -30,12 +30,21 @@ class Auth4Model extends FlutterFlowModel {
   TextEditingController? passwordConfirmController;
   late bool passwordConfirmVisibility;
   String? Function(BuildContext, String?)? passwordConfirmControllerValidator;
+  TextEditingController? emailAddressCreateController;
+  String? Function(BuildContext, String?)?
+  emailAddressCreateControllerValidator;
+  // State field(s) for password_create widget.
+  TextEditingController? passwordCreateController;
+  late bool passwordCreateVisibility;
+  String? Function(BuildContext, String?)? passwordCreateControllerValidator;
+
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
     passwordVisibility = false;
     passwordConfirmVisibility = false;
+    passwordCreateVisibility = false;
   }
 
   void dispose() {
@@ -44,6 +53,8 @@ class Auth4Model extends FlutterFlowModel {
     emailAddressController?.dispose();
     passwordController?.dispose();
     passwordConfirmController?.dispose();
+    emailAddressCreateController?.dispose();
+    passwordCreateController?.dispose();
   }
 
   /// Action blocks are added here.

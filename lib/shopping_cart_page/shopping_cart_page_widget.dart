@@ -115,7 +115,7 @@ class _ShoppingCartPageWidgetState extends State<ShoppingCartPageWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 20.0, 0.0, 0.0),
                                       child: Text(
-                                        '6/28朝',
+                                        '9/10',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(

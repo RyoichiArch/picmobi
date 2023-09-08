@@ -5,11 +5,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'leaflet_portal_page_model.dart';
 export 'leaflet_portal_page_model.dart';
+import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 class LeafletPortalPageWidget extends StatefulWidget {
   const LeafletPortalPageWidget({Key? key}) : super(key: key);
@@ -23,6 +27,59 @@ class _LeafletPortalPageWidgetState extends State<LeafletPortalPageWidget> {
   late LeafletPortalPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  File? _image;
+  final ImagePicker imagePicker = ImagePicker();
+  String? _label; // ラベルを保存する変数
+  int _quantity = 0;// 個数を保存する変数
+
+  Future<void> predictImage() async {
+    if (_image == null) return;
+
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse('http://192.168.81.114:8000/predict'),
+    );
+    request.files.add(
+      await http.MultipartFile.fromPath(
+        'image',
+        _image!.path,
+      ),
+    );
+
+    final response = await request.send();
+    final responseText = await response.stream.bytesToString();
+    final result = jsonDecode(responseText);
+
+    // ここでサーバーからのレスポンスをコンソールに出力します。
+    print(result);
+
+
+    setState(() {
+      print(result);
+      _label = result['prediction'];// サーバーからのレスポンスを元にラベルを設定
+    });
+  }
+
+  Future getImageFromCamera() async {
+    final pickedFile = await imagePicker.getImage(source: ImageSource.camera);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
+    });
+    predictImage(); // 追加
+  }
+
+  Future getImageFromGallery() async {
+    final pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
+    });
+    predictImage(); // 追加
+  }
 
   @override
   void initState() {
@@ -71,6 +128,10 @@ class _LeafletPortalPageWidgetState extends State<LeafletPortalPageWidget> {
                     ),
                   ),
                 ),
+                Text(
+                  _label ?? 'No label',
+                  style: TextStyle(fontSize: 24.0),
+                ),
                 Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
@@ -81,6 +142,9 @@ class _LeafletPortalPageWidgetState extends State<LeafletPortalPageWidget> {
                         final selectedMedia = await selectMedia(
                           multiImage: false,
                         );
+
+                        getImageFromCamera;//追加
+
                         if (selectedMedia != null &&
                             selectedMedia.every((m) =>
                                 validateFileFormat(m.storagePath, context))) {
@@ -127,6 +191,7 @@ class _LeafletPortalPageWidgetState extends State<LeafletPortalPageWidget> {
 
                         setState(() {
                           FFAppState().camerastate = _model.uploadedFileUrl;
+                          FFAppState().buyname = _label.toString();
                         });
 
                         context.pushNamed('OptionPage1');

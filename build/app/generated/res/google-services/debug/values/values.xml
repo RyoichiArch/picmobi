@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">219955384471-ruqr687dja3asgssvtnbjo9t7t0nuou5.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">219955384471</string>
+    <string name="google_api_key" translatable="false">AIzaSyCrQtxxI6wPe0F_57cwe7e0VWXYGaucO-4</string>
+    <string name="google_app_id" translatable="false">1:219955384471:android:446280aa0f6d6412c3d9d2</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCrQtxxI6wPe0F_57cwe7e0VWXYGaucO-4</string>
+    <string name="google_storage_bucket" translatable="false">pictmobi.appspot.com</string>
+    <string name="project_id" translatable="false">pictmobi</string>
+</resources>
